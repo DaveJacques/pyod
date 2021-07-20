@@ -39,7 +39,7 @@ def ecdf(X):
 
 
 def _parallel_ecdf(n_dims, X):
-    """Private method to calculate ecdf in parallel.    
+    """Private method to calculate ecdf in parallel.
     Parameters
     ----------
     n_dims : int
@@ -77,7 +77,7 @@ class COPOD(BaseDetector):
         The amount of contamination of the data set, i.e.
         the proportion of outliers in the data set. Used when fitting to
         define the threshold on the decision function.
-        
+
     n_jobs : optional (default=1)
         The number of jobs to run in parallel for both `fit` and
         `predict`. If -1, then the number of jobs is set to the
@@ -229,10 +229,10 @@ class COPOD(BaseDetector):
 
         columns : list
             Specify a list of features/dimensions for plotting.
-        
+
         cutoffs : list of floats in (0., 1), optional (default=[0.95, 0.99])
             The significance cutoff bands of the dimensional outlier graph.
-        
+
         feature_names: list of strings
             The display names of all columns of the dataset,
             to show on the x-axis of the plot.
@@ -250,31 +250,31 @@ class COPOD(BaseDetector):
 
         cutoffs = [1 - self.contamination,
                    0.99] if cutoffs is None else cutoffs
-        plt.plot(column_range, self.O.loc[ind, columns],
-                 label='Outlier Score')
-        for i in cutoffs:
-            plt.plot(column_range,
-                     self.O.loc[:, columns].quantile(q=i, axis=0), '-',
-                     label='{percentile} Cutoff Band'.format(percentile=i))
-        plt.xlim([1, max(column_range)])
-        plt.ylim([0, int(self.O.loc[:, columns].max().max()) + 1])
-        plt.ylabel('Dimensional Outlier Score')
-        plt.xlabel('Dimension')
+        # plt.plot(column_range, self.O.loc[ind, columns],
+        #          label='Outlier Score')
+        # for i in cutoffs:
+        #     plt.plot(column_range,
+        #              self.O.loc[:, columns].quantile(q=i, axis=0), '-',
+        #              label='{percentile} Cutoff Band'.format(percentile=i))
+        # plt.xlim([1, max(column_range)])
+        # plt.ylim([0, int(self.O.loc[:, columns].max().max()) + 1])
+        # plt.ylabel('Dimensional Outlier Score')
+        # plt.xlabel('Dimension')
+        #
+        # ticks = column_range
+        # if feature_names is not None:
+        #     assert len(feature_names) == len(ticks), \
+        #         "Length of feature_names does not match dataset dimensions."
+        #     plt.xticks(ticks, labels=feature_names)
+        # else:
+        #     plt.xticks(ticks)
 
-        ticks = column_range
-        if feature_names is not None:
-            assert len(feature_names) == len(ticks), \
-                "Length of feature_names does not match dataset dimensions."
-            plt.xticks(ticks, labels=feature_names)
-        else:
-            plt.xticks(ticks)
-
-        plt.yticks(range(0, int(self.O.loc[:, columns].max().max()) + 1))
-        label = 'Outlier' if self.labels_[ind] == 1 else 'Inlier'
-        plt.title('Outlier Score Breakdown for Data #{index} ({label})'.format(
-            index=ind + 1, label=label))
-        plt.legend()
-        plt.show()
+        # plt.yticks(range(0, int(self.O.loc[:, columns].max().max()) + 1))
+        # label = 'Outlier' if self.labels_[ind] == 1 else 'Inlier'
+        # plt.title('Outlier Score Breakdown for Data #{index} ({label})'.format(
+        #     index=ind + 1, label=label))
+        # plt.legend()
+        # plt.show()
         return self.O.loc[ind, columns], self.O.loc[:, columns].quantile(
             q=cutoffs[0],
             axis=0), self.O.loc[:, columns].quantile(
