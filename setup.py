@@ -24,15 +24,15 @@ with open(path.join(this_directory, 'requirements.txt'),
     requirements = f.read().splitlines()
 
 setup(
-    name='pyod',
+    name='pyod_dave',
     version=__version__,
     description='A Python Toolbox for Scalable Outlier Detection (Anomaly Detection)',
     long_description=readme(),
     long_description_content_type='text/x-rst',
     author='Yue Zhao',
     author_email='zhaoy@cmu.edu',
-    url='https://github.com/yzhao062/pyod',
-    download_url='https://github.com/yzhao062/pyod/archive/master.zip',
+    url='https://https://github.com/DaveJacques/pyod',
+    download_url='https://github.com/DaveJacques/pyod/archive/master.zip',
     keywords=['outlier detection', 'anomaly detection', 'outlier ensembles',
               'data mining', 'neural networks'],
     packages=find_packages(exclude=['test']),
