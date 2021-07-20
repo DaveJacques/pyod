@@ -24,7 +24,7 @@ with open(path.join(this_directory, 'requirements.txt'),
     requirements = f.read().splitlines()
 
 setup(
-    name='pyod_dave',
+    name='pyoddave',
     version=__version__,
     description='A Python Toolbox for Scalable Outlier Detection (Anomaly Detection)',
     long_description=readme(),
